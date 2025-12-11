@@ -1,0 +1,64 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 4%;
+    /* #0a0a0a */
+    --foreground: 0 0% 93%;
+    /* #ededed */
+
+    --card: 0 0% 4%;
+    --card-foreground: 0 0% 93%;
+
+    --popover: 0 0% 4%;
+    --popover-foreground: 0 0% 93%;
+
+    --primary: 210 100% 50%;
+    /* Cyan/Blue accent */
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 270 50% 40%;
+    /* Purple accent */
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 240 4% 16%;
+    --muted-foreground: 240 5% 65%;
+
+    --accent: 240 4% 16%;
+    --accent-foreground: 0 0% 93%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 240 4% 16%;
+    /* #292929 - Zinc 800ish */
+    --input: 240 4% 16%;
+    --ring: 240 5% 65%;
+
+    --radius: 0.5rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+/* Custom Utilities for cinematic feel */
+.glass {
+  @apply bg-background/50 backdrop-blur-md border border-white/10;
+}
+
+.text-scramble {
+  font-family: 'Space Grotesk', monospace;
+}
