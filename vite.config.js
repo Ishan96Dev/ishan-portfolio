@@ -7,7 +7,7 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   plugins: [react()],
   // Custom Domain configured: 'ishanchakraborty.com' (Requires root base)
-  base: "/portfolio-app/",
+  base: "/ishan-portfolio/",
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
