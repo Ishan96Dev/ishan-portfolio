@@ -3,6 +3,12 @@ import projectPortfolio from "@/assets/project-portfolio.png";
 import projectFinance from "@/assets/project-finance.png";
 import projectRobot from "@/assets/project-robot.png";
 import projectSentiment from "@/assets/project-sentiment.png";
+import projectSentimentScope from "@/assets/project-sentimentscope.png";
+import projectDocForge from "@/assets/project-docforge.png";
+import projectAISentiment from "@/assets/project-ai-sentiment.png";
+import projectDocumentRAG from "@/assets/project-document-rag.png";
+import katonicLogo from "@/assets/logos/katonic-logo.png";
+import sectonaLogo from "@/assets/logos/sectona-logo.png";
 
 export const resumeData = {
     name: "Ishan Chakraborty",
@@ -19,7 +25,7 @@ export const resumeData = {
         },
         {
             name: "LinkedIn",
-            url: "https://www.linkedin.com/in/ishan-chakraborty",
+            url: "https://www.linkedin.com/in/ishan-chakraborty-0085571a1",
             icon: Linkedin
         },
         {
@@ -32,13 +38,15 @@ export const resumeData = {
     experience: [
         {
             company: "Katonic.ai",
+            logo: katonicLogo,
             role: "QA Engineer",
-            period: "January 2024 – Present",
+            period: "January 2024 – 12th December 2025",
             description: "Executed specialized testing of Large Language Models and Generative AI systems. Validated RAG system performance and tested Agentic AI workflows. Developed automation frameworks using Robot Framework with Docker. Performed extensive API and performance testing.",
             tags: ["AI/ML Testing", "Robot Framework", "Docker", "RAG", "LLM"]
         },
         {
             company: "Katonic.ai",
+            logo: katonicLogo,
             role: "Data Scientist",
             period: "September 2021 – January 2024",
             description: "Led predictive analytics projects and deployed production-ready applications using Streamlit. Built Sentiment Analyzer and Mask Detection applications. Contributed to Katonic MLOps & GENAI Platform QA.",
@@ -46,6 +54,7 @@ export const resumeData = {
         },
         {
             company: "Sectona",
+            logo: sectonaLogo,
             role: "Test Engineer Intern",
             period: "January 2020 – March 2020",
             description: "Conducted thorough testing of security-related user interfaces. Integrated and tested UI compatibility with Linux and Windows environments.",
@@ -65,6 +74,34 @@ export const resumeData = {
         }
     ],
     projects: [
+        {
+            title: "SentimentScope NLP Analyzer",
+            description: "AI-powered sentiment analysis web app built with Streamlit & TextBlob NLP. Real-time emotion detection with confidence scoring, security features, and professional UI.",
+            tech: ["Streamlit", "TextBlob", "NLP", "Python"],
+            link: "https://github.com/Ishan96Dev/SentimentScope-NLP-Sentiment-Analysis-App",
+            image: projectSentimentScope
+        },
+        {
+            title: "DocForge Web-to-PDF",
+            description: "Open-source intelligent web-to-PDF converter. Transform entire websites into professional PDF documents with smart crawling, sitemap detection, and beautiful formatting.",
+            tech: ["React", "FastAPI", "TypeScript", "Python"],
+            link: "https://github.com/Ishan96Dev/DocForge",
+            image: projectDocForge
+        },
+        {
+            title: "AI Sentiment Analyzer",
+            description: "Advanced AI sentiment analysis with OpenAI GPT-4/GPT-5. Features real-time validation, reasoning transparency, 4-type classification, and confidence metrics.",
+            tech: ["OpenAI API", "Streamlit", "Python", "GPT-4"],
+            link: "https://github.com/Ishan96Dev/AI-Sentiment-Analyzer",
+            image: projectAISentiment
+        },
+        {
+            title: "Document Knowledge Retrieval",
+            description: "A RAG-powered document analysis tool using OpenAI, CrewAI, and Milvus for intelligent document querying and knowledge extraction.",
+            tech: ["RAG", "OpenAI", "CrewAI", "Milvus", "Python"],
+            link: "https://github.com/Ishan96Dev/document-knowledge-retrieval",
+            image: projectDocumentRAG
+        },
         {
             title: "Digital Portfolio App",
             description: "A modern, interactive digital portfolio built with Streamlit featuring dual themes and AI/ML-inspired effects.",

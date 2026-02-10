@@ -62,3 +62,54 @@
 .text-scramble {
   font-family: 'Space Grotesk', monospace;
 }
+
+/* Custom Scrollbar - Modern Theme */
+/* Webkit browsers (Chrome, Safari, Edge) */
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(0, 0%, 4%);
+  border-left: 1px solid hsl(240, 4%, 16%);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(
+    180deg,
+    hsl(180, 100%, 40%) 0%,
+    hsl(210, 100%, 50%) 100%
+  );
+  border-radius: 6px;
+  border: 2px solid hsl(0, 0%, 4%);
+  transition: all 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(
+    180deg,
+    hsl(180, 100%, 45%) 0%,
+    hsl(210, 100%, 55%) 100%
+  );
+  box-shadow: 0 0 10px rgba(20, 184, 166, 0.5);
+}
+
+::-webkit-scrollbar-thumb:active {
+  background: linear-gradient(
+    180deg,
+    hsl(180, 100%, 35%) 0%,
+    hsl(210, 100%, 45%) 100%
+  );
+}
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: hsl(210, 100%, 50%) hsl(0, 0%, 4%);
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
