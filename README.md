@@ -1,11 +1,13 @@
 # 🚀 Ishan Chakraborty - Portfolio
 
+> 🌐 **Live Site**: [ishan96dev.github.io/ishan-portfolio](https://ishan96dev.github.io/ishan-portfolio/)
+
+[![Portfolio Demo](./public/portfolio-demo.webp)](https://ishan96dev.github.io/ishan-portfolio/)
+
 ![Build Status](https://github.com/Ishan96Dev/ishan-portfolio/actions/workflows/deploy.yml/badge.svg)
 ![License](https://img.shields.io/badge/license-MIT-blue.svg)
 ![React](https://img.shields.io/badge/React-19-61DAFB?logo=react)
 ![Next.js](https://img.shields.io/badge/Next.js-15-000000?logo=next.js)
-
-> 🌐 **Live Site**: [ishan96dev.github.io/ishan-portfolio](https://ishan96dev.github.io/ishan-portfolio/)
 
 Official portfolio of Ishan Chakraborty - QA Engineer & AI/ML Testing Specialist. Showcasing expertise in AI/ML testing, automation frameworks, and modern web development.
 
