@@ -1,3 +1,5 @@
+'use client';
+
 import { motion } from 'framer-motion';
 import { TextScramble } from './ui/text-scramble';
 import { SparklesText } from './ui/sparkles-text';

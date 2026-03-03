@@ -1,3 +1,5 @@
+'use client';
+
 import { resumeData } from '@/data/resume';
 import { Github, Linkedin, Mail, Twitter } from 'lucide-react';
 

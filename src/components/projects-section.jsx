@@ -1,3 +1,5 @@
+'use client';
+
 import { motion } from 'framer-motion';
 import { resumeData } from '@/data/resume';
 import { BentoGrid, BentoGridItem } from './ui/bento-grid';

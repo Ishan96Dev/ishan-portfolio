@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { resumeData } from "@/data/resume";
@@ -47,8 +49,10 @@ export function ContactSection() {
             );
             const mailtoLink = `mailto:${resumeData.email}?subject=${subject}&body=${body}`;
             
-            // Open email client
-            window.location.href = mailtoLink;
+            // Open email client (guard for SSR)
+            if (typeof window !== 'undefined') {
+                window.location.href = mailtoLink;
+            }
             
             // Show success message
             setStatus({ 
