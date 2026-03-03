@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://ishan96dev.github.io/ishan-portfolio/sitemap.xml
