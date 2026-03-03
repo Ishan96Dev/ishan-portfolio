@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { motion } from 'framer-motion';
 
 const CHARS = "-_~`!@#$%^&*()+=[]{}|;:,.<>?/";
@@ -11,6 +11,7 @@ export const TextScramble = ({
 }) => {
     const [displayText, setDisplayText] = useState(children);
     const [isAnimating, setIsAnimating] = useState(false);
+    const intervalRef = useRef(null);
 
     useEffect(() => {
         const text = children;
@@ -22,8 +23,8 @@ export const TextScramble = ({
         const startTimeout = setTimeout(() => {
             setIsAnimating(true);
 
-            const interval = setInterval(() => {
-                setDisplayText(current => {
+            intervalRef.current = setInterval(() => {
+                setDisplayText(() => {
                     return text
                         .split("")
                         .map((char, index) => {
@@ -37,16 +38,21 @@ export const TextScramble = ({
 
                 frame++;
                 if (frame >= totalFrames) {
-                    clearInterval(interval);
+                    clearInterval(intervalRef.current);
+                    intervalRef.current = null;
                     setDisplayText(text);
                     setIsAnimating(false);
                 }
             }, 1000 / 60);
-
-            return () => clearInterval(interval);
         }, delay * 1000);
 
-        return () => clearTimeout(startTimeout);
+        return () => {
+            clearTimeout(startTimeout);
+            if (intervalRef.current) {
+                clearInterval(intervalRef.current);
+                intervalRef.current = null;
+            }
+        };
     }, [children, duration, delay]);
 
     return (

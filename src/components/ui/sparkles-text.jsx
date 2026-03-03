@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
+import { useEffect, useState, useRef } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 const Sparkle = ({ size, color, style }) => {
@@ -30,11 +30,12 @@ const Sparkle = ({ size, color, style }) => {
 
 export const SparklesText = ({ text, colors = { first: "#A07CFE", second: "#FE8FB5" }, className, sparklesCount = 10 }) => {
     const [sparkles, setSparkles] = useState([]);
+    const intervalRef = useRef(null);
 
     useEffect(() => {
         const generateSparkles = () => {
-            const newSparkles = Array.from({ length: sparklesCount }).map((_, i) => ({
-                id: Math.random(),
+            const newSparkles = Array.from({ length: sparklesCount }).map(() => ({
+                id: `${Date.now()}-${Math.random()}`,
                 size: Math.random() * 10 + 10,
                 style: {
                     top: `${Math.random() * 100}%`,
@@ -45,17 +46,44 @@ export const SparklesText = ({ text, colors = { first: "#A07CFE", second: "#FE8F
             setSparkles(newSparkles);
         };
 
-        generateSparkles();
-        const interval = setInterval(generateSparkles, 2000);
-        return () => clearInterval(interval);
+        const startInterval = () => {
+            if (intervalRef.current) return;
+            generateSparkles();
+            intervalRef.current = setInterval(generateSparkles, 2000);
+        };
+
+        const stopInterval = () => {
+            if (intervalRef.current) {
+                clearInterval(intervalRef.current);
+                intervalRef.current = null;
+            }
+        };
+
+        const handleVisibilityChange = () => {
+            if (document.hidden) {
+                stopInterval();
+            } else {
+                startInterval();
+            }
+        };
+
+        startInterval();
+        document.addEventListener("visibilitychange", handleVisibilityChange);
+
+        return () => {
+            stopInterval();
+            document.removeEventListener("visibilitychange", handleVisibilityChange);
+        };
     }, [colors, sparklesCount]);
 
     return (
         <div className={cn("relative inline-block", className)}>
             <span className="relative z-0">{text}</span>
-            {sparkles.map((sparkle) => (
-                <Sparkle key={sparkle.id} size={sparkle.size} color={sparkle.color} style={sparkle.style} />
-            ))}
+            <AnimatePresence>
+                {sparkles.map((sparkle) => (
+                    <Sparkle key={sparkle.id} size={sparkle.size} color={sparkle.color} style={sparkle.style} />
+                ))}
+            </AnimatePresence>
         </div>
     );
 };
