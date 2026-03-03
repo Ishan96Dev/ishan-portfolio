@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { cn } from "@/lib/utils";
 import { ArrowUpRight } from "lucide-react";
 
@@ -32,7 +33,7 @@ export const BentoGridItem = ({
         >
             <div className="flex flex-1 w-full h-full min-h-[6rem] rounded-xl bg-gradient-to-br from-neutral-200 dark:from-neutral-900 dark:to-neutral-800 to-neutral-100 overflow-hidden relative">
                 {image ? (
-                    <img src={image} alt={title} className="w-full h-full object-cover transition-transform duration-500 group-hover/bento:scale-110" />
+                    <Image src={image} alt={title || ''} fill className="object-cover transition-transform duration-500 group-hover/bento:scale-110" sizes="(max-width: 768px) 100vw, 33vw" />
                 ) : header ? (
                     <div className="w-full h-full object-cover">{header}</div>
                 ) : null}

@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { resumeData } from '@/data/resume';
 
@@ -58,8 +59,8 @@ function ExperienceCard({ exp, index }) {
                     <div className="flex items-center gap-3 mb-4">
                         {/* Company Logo */}
                         {exp.logo ? (
-                            <div className="w-12 h-12 rounded-lg bg-white/5 flex items-center justify-center flex-shrink-0 ring-1 ring-neutral-700 p-1.5">
-                                <img src={exp.logo} alt={`${exp.company} logo`} className="w-full h-full object-contain" />
+                            <div className="relative w-12 h-12 rounded-lg bg-white/5 flex items-center justify-center flex-shrink-0 ring-1 ring-neutral-700 p-1.5">
+                                <Image src={exp.logo} alt={`${exp.company} logo`} fill className="object-contain p-1.5" sizes="48px" />
                             </div>
                         ) : (
                             <div className="w-12 h-12 rounded-lg bg-neutral-800 border border-neutral-700 flex items-center justify-center text-teal-400 font-bold text-sm flex-shrink-0">
