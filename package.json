@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://Ishan96Dev.github.io/ishan-portfolio",
+  "homepage": "https://ishan-portfolio.vercel.app",
   "scripts": {
     "dev": "next dev",
     "build": "next build",

@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://ishan96dev.github.io/ishan-portfolio/sitemap.xml
+Sitemap: https://ishan-portfolio.vercel.app/sitemap.xml

@@ -1,7 +1,7 @@
 import './globals.css';
 
 export const metadata = {
-    metadataBase: new URL('https://ishan96dev.github.io/ishan-portfolio'),
+    metadataBase: new URL('https://ishan-portfolio.vercel.app'),
     title: {
         default: 'Ishan Chakraborty | QA Engineer & AI/ML Testing Specialist',
         template: '%s | Ishan Chakraborty',
@@ -29,14 +29,14 @@ export const metadata = {
     openGraph: {
         type: 'website',
         locale: 'en_US',
-        url: 'https://ishan96dev.github.io/ishan-portfolio',
+        url: 'https://ishan-portfolio.vercel.app',
         siteName: 'Ishan Chakraborty Portfolio',
         title: 'Ishan Chakraborty | QA Engineer & AI/ML Testing Specialist',
         description:
             'Portfolio of Ishan Chakraborty — QA Engineer, AI/ML Testing Specialist, RAG & Agentic AI Enthusiast, and Full Stack Developer.',
         images: [
             {
-                url: '/ishan-portfolio/og-image.png',
+                url: '/og-image.png',
                 width: 1200,
                 height: 630,
                 alt: 'Ishan Chakraborty Portfolio',
@@ -48,7 +48,7 @@ export const metadata = {
         title: 'Ishan Chakraborty | QA Engineer & AI/ML Testing Specialist',
         description:
             'Portfolio of Ishan Chakraborty — QA Engineer, AI/ML Testing Specialist, RAG & Agentic AI Enthusiast, and Full Stack Developer.',
-        images: ['/ishan-portfolio/og-image.png'],
+        images: ['/og-image.png'],
         creator: '@Ishan96Dev',
     },
     robots: {
@@ -63,10 +63,10 @@ export const metadata = {
         },
     },
     icons: {
-        icon: '/ishan-portfolio/favicon.svg',
+        icon: '/favicon.svg',
     },
     alternates: {
-        canonical: 'https://ishan96dev.github.io/ishan-portfolio',
+        canonical: 'https://ishan-portfolio.vercel.app',
     },
 };
 
@@ -81,7 +81,7 @@ export default function RootLayout({ children }) {
                             '@context': 'https://schema.org',
                             '@type': 'Person',
                             name: 'Ishan Chakraborty',
-                            url: 'https://ishan96dev.github.io/ishan-portfolio',
+                            url: 'https://ishan-portfolio.vercel.app',
                             jobTitle: 'QA Engineer & AI/ML Testing Specialist',
                             description:
                                 'QA Engineer, AI/ML Testing Specialist, RAG & Agentic AI Enthusiast, Full Stack Developer',

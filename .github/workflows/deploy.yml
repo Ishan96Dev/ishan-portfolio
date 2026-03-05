@@ -1,15 +1,20 @@
-name: Deploy to GitHub Pages
+# CI Build Check
+# Vercel auto-deploys on every push to main via its GitHub integration.
+# This workflow only validates that the build compiles cleanly.
+# No manual deployment step is needed here.
+
+name: CI Build Check
 
 on:
   push:
     branches:
       - main
-
-permissions:
-  contents: write
+  pull_request:
+    branches:
+      - main
 
 jobs:
-  build-and-deploy:
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -19,18 +24,10 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
+          cache: 'npm'
 
       - name: Install dependencies
         run: npm ci
 
       - name: Build
         run: npm run build
-
-      - name: Add .nojekyll
-        run: touch out/.nojekyll
-
-      - name: Deploy
-        uses: JamesIves/github-pages-deploy-action@v4
-        with:
-          folder: out
-          branch: gh-pages
