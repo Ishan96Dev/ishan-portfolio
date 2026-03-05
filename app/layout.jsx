@@ -1,4 +1,6 @@
 import './globals.css';
+import { Analytics } from '@vercel/analytics/next';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 
 export const metadata = {
     metadataBase: new URL('https://ishan-portfolio.vercel.app'),
@@ -108,7 +110,11 @@ export default function RootLayout({ children }) {
                     }}
                 />
             </head>
-            <body>{children}</body>
+            <body>
+                {children}
+                <Analytics />
+                <SpeedInsights />
+            </body>
         </html>
     );
 }
