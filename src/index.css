@@ -113,3 +113,28 @@
 html {
   scroll-behavior: smooth;
 }
+
+/* ── Performance: GPU compositing hints ── */
+
+/* Promote animated sections to their own compositor layer */
+section {
+  contain: layout style;
+}
+
+/* Framer Motion elements: tell browser upfront they'll transform */
+[data-framer-motion],
+.group\/bento {
+  will-change: transform;
+}
+
+/* Prevent blur filters causing full-page repaints */
+.blur-3xl,
+.blur-\[100px\] {
+  will-change: filter;
+  transform: translateZ(0);
+}
+
+/* Reduce paint area for card hover effects */
+.group:hover .group-hover\/bento\:scale-110 {
+  transform: scale(1.1) translateZ(0);
+}

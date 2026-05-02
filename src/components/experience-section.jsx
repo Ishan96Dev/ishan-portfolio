@@ -19,19 +19,8 @@ function ExperienceCard({ exp, index }) {
         >
             {/* Timeline Dot - Vertically Centered */}
             <span className="absolute -left-[2px] md:-left-[50px] top-1/2 -translate-y-1/2 w-3 h-3 rounded-full bg-teal-500 ring-4 ring-neutral-900 z-10 flex items-center justify-center">
-                {/* Continuous Pulsing Animation */}
-                <motion.span
-                    animate={{
-                        scale: [1, 1.5, 1],
-                        opacity: [0.5, 0, 0.5]
-                    }}
-                    transition={{
-                        duration: 2,
-                        repeat: Infinity,
-                        ease: "easeInOut"
-                    }}
-                    className="absolute inset-0 rounded-full bg-teal-500"
-                />
+                {/* CSS-only ping — no JS animation loop */}
+                <span className="absolute inset-0 rounded-full bg-teal-500 animate-ping opacity-50" />
             </span>
 
             <motion.div

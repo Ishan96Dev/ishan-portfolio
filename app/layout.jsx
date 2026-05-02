@@ -5,14 +5,17 @@ import { SpeedInsights } from '@vercel/speed-insights/next';
 export const metadata = {
     metadataBase: new URL('https://ishan-portfolio.vercel.app'),
     title: {
-        default: 'Ishan Chakraborty | QA Engineer & AI/ML Testing Specialist',
+        default: 'Ishan Chakraborty | QA Engineer & AI/ML Developer | Python Backend Developer',
         template: '%s | Ishan Chakraborty',
     },
     description:
-        'Portfolio of Ishan Chakraborty — QA Engineer, AI/ML Testing Specialist, RAG & Agentic AI Enthusiast, and Full Stack Developer based in Kolkata, India. Experienced in automation testing, AI systems, and building robust digital products.',
+        'Portfolio of Ishan Chakraborty — QA Engineer, AI/ML Developer & Python Backend Developer, RAG & Agentic AI Enthusiast, and Full Stack Developer based in Kolkata, India. Experienced in AI/ML development, automation testing, RAG systems, and building robust digital products.',
     keywords: [
         'Ishan Chakraborty',
         'QA Engineer',
+        'AI Developer',
+        'ML Developer',
+        'Python Backend Developer',
         'AI Testing',
         'ML Testing',
         'RAG',
@@ -24,7 +27,10 @@ export const metadata = {
         'Software Engineer',
         'Selenium',
         'Python',
+        'FastAPI',
         'React',
+        'OpenAI',
+        'LangChain',
     ],
     authors: [{ name: 'Ishan Chakraborty', url: 'https://github.com/Ishan96Dev' }],
     creator: 'Ishan Chakraborty',
@@ -33,9 +39,9 @@ export const metadata = {
         locale: 'en_US',
         url: 'https://ishan-portfolio.vercel.app',
         siteName: 'Ishan Chakraborty Portfolio',
-        title: 'Ishan Chakraborty | QA Engineer & AI/ML Testing Specialist',
+        title: 'Ishan Chakraborty | QA Engineer & AI/ML Developer | Python Backend Developer',
         description:
-            'Portfolio of Ishan Chakraborty — QA Engineer, AI/ML Testing Specialist, RAG & Agentic AI Enthusiast, and Full Stack Developer.',
+            'Portfolio of Ishan Chakraborty — QA Engineer, AI/ML Developer & Python Backend Developer, RAG & Agentic AI Enthusiast, and Full Stack Developer.',
         images: [
             {
                 url: '/og-image.png',
@@ -47,9 +53,9 @@ export const metadata = {
     },
     twitter: {
         card: 'summary_large_image',
-        title: 'Ishan Chakraborty | QA Engineer & AI/ML Testing Specialist',
+        title: 'Ishan Chakraborty | QA Engineer & AI/ML Developer | Python Backend Developer',
         description:
-            'Portfolio of Ishan Chakraborty — QA Engineer, AI/ML Testing Specialist, RAG & Agentic AI Enthusiast, and Full Stack Developer.',
+            'Portfolio of Ishan Chakraborty — QA Engineer, AI/ML Developer & Python Backend Developer, RAG & Agentic AI Enthusiast, and Full Stack Developer.',
         images: ['/og-image.png'],
         creator: '@Ishan96Dev',
     },
@@ -74,7 +80,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
     return (
-        <html lang="en">
+        <html lang="en" suppressHydrationWarning>
             <head>
                 <script
                     type="application/ld+json"
@@ -84,9 +90,9 @@ export default function RootLayout({ children }) {
                             '@type': 'Person',
                             name: 'Ishan Chakraborty',
                             url: 'https://ishan-portfolio.vercel.app',
-                            jobTitle: 'QA Engineer & AI/ML Testing Specialist',
+                            jobTitle: 'QA Engineer & AI/ML Developer | Python Backend Developer',
                             description:
-                                'QA Engineer, AI/ML Testing Specialist, RAG & Agentic AI Enthusiast, Full Stack Developer',
+                                'QA Engineer, AI/ML Developer & Python Backend Developer, RAG & Agentic AI Enthusiast, Full Stack Developer',
                             address: {
                                 '@type': 'PostalAddress',
                                 addressLocality: 'Kolkata',
@@ -99,18 +105,24 @@ export default function RootLayout({ children }) {
                             ],
                             knowsAbout: [
                                 'QA Engineering',
+                                'AI Development',
+                                'ML Development',
                                 'AI Testing',
                                 'ML Testing',
                                 'RAG Systems',
                                 'Agentic AI',
+                                'Python Backend Development',
                                 'Full Stack Development',
                                 'Automation Testing',
+                                'OpenAI API',
+                                'LangChain',
+                                'FastAPI',
                             ],
                         }),
                     }}
                 />
             </head>
-            <body>
+            <body suppressHydrationWarning>
                 {children}
                 <Analytics />
                 <SpeedInsights />

@@ -40,6 +40,15 @@ export function Footer() {
                             </li>
                             <li>
                                 <a 
+                                    href="mailto:ishanrock1234@gmail.com"
+                                    className="hover:text-primary transition-colors inline-flex items-center gap-2"
+                                >
+                                    <Mail size={14} />
+                                    <span>ishanrock1234@gmail.com <span className="text-xs opacity-50">(Alt)</span></span>
+                                </a>
+                            </li>
+                            <li>
+                                <a 
                                     href={`tel:${resumeData.phone}`}
                                     className="hover:text-primary transition-colors inline-flex items-center gap-2"
                                 >

@@ -33,7 +33,15 @@ export const BentoGridItem = ({
         >
             <div className="flex flex-1 w-full h-full min-h-[6rem] rounded-xl bg-gradient-to-br from-neutral-200 dark:from-neutral-900 dark:to-neutral-800 to-neutral-100 overflow-hidden relative">
                 {image ? (
-                    <Image src={image} alt={title || ''} fill className="object-cover transition-transform duration-500 group-hover/bento:scale-110" sizes="(max-width: 768px) 100vw, 33vw" />
+                    <Image
+                        src={image}
+                        alt={title || ''}
+                        fill
+                        loading="lazy"
+                        quality={75}
+                        className="object-cover transition-transform duration-500 group-hover/bento:scale-110"
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    />
                 ) : header ? (
                     <div className="w-full h-full object-cover">{header}</div>
                 ) : null}

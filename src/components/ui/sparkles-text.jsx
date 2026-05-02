@@ -10,7 +10,7 @@ const Sparkle = ({ size, color, style }) => {
             initial={{ opacity: 0, scale: 0 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0 }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.4 }}
             style={style}
             className="absolute block pointer-events-none z-10"
         >
@@ -30,18 +30,21 @@ const Sparkle = ({ size, color, style }) => {
     );
 };
 
-export const SparklesText = ({ text, colors = { first: "#A07CFE", second: "#FE8FB5" }, className, sparklesCount = 10 }) => {
+export const SparklesText = ({ text, colors = { first: "#A07CFE", second: "#FE8FB5" }, className, sparklesCount = 6 }) => {
     const [sparkles, setSparkles] = useState([]);
     const intervalRef = useRef(null);
+    const isVisibleRef = useRef(false);
+    const containerRef = useRef(null);
 
     useEffect(() => {
         const generateSparkles = () => {
             const newSparkles = Array.from({ length: sparklesCount }).map(() => ({
                 id: `${Date.now()}-${Math.random()}`,
-                size: Math.random() * 10 + 10,
+                size: Math.random() * 8 + 8,
                 style: {
                     top: `${Math.random() * 100}%`,
                     left: `${Math.random() * 100}%`,
+                    willChange: 'opacity, transform',
                 },
                 color: Math.random() > 0.5 ? colors.first : colors.second,
             }));
@@ -49,9 +52,10 @@ export const SparklesText = ({ text, colors = { first: "#A07CFE", second: "#FE8F
         };
 
         const startInterval = () => {
-            if (intervalRef.current) return;
+            if (intervalRef.current || !isVisibleRef.current) return;
             generateSparkles();
-            intervalRef.current = setInterval(generateSparkles, 2000);
+            // Slower interval to reduce repaints: 3s instead of 2s
+            intervalRef.current = setInterval(generateSparkles, 3000);
         };
 
         const stopInterval = () => {
@@ -61,25 +65,43 @@ export const SparklesText = ({ text, colors = { first: "#A07CFE", second: "#FE8F
             }
         };
 
+        // Only animate when the element is in the viewport
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    isVisibleRef.current = entry.isIntersecting;
+                    if (entry.isIntersecting) {
+                        startInterval();
+                    } else {
+                        stopInterval();
+                        setSparkles([]);
+                    }
+                });
+            },
+            { threshold: 0.1 }
+        );
+
+        if (containerRef.current) observer.observe(containerRef.current);
+
         const handleVisibilityChange = () => {
             if (document.hidden) {
                 stopInterval();
-            } else {
+            } else if (isVisibleRef.current) {
                 startInterval();
             }
         };
 
-        startInterval();
         document.addEventListener("visibilitychange", handleVisibilityChange);
 
         return () => {
             stopInterval();
+            observer.disconnect();
             document.removeEventListener("visibilitychange", handleVisibilityChange);
         };
     }, [colors, sparklesCount]);
 
     return (
-        <div className={cn("relative inline-block", className)}>
+        <div ref={containerRef} className={cn("relative inline-block", className)}>
             <span className="relative z-0">{text}</span>
             <AnimatePresence>
                 {sparkles.map((sparkle) => (
