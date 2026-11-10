@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
-import { ChevronRight } from 'lucide-react';
+import { ChevronRight, ZoomIn, ZoomOut, RotateCcw } from 'lucide-react';
 
 // ─── Architecture diagrams ────────────────────────────────────────────────────
 const ARCHITECTURES = [
@@ -163,7 +163,11 @@ function nodeCentre(node) {
     return { x: node.x + node.w / 2, y: node.y + node.h / 2 };
 }
 
-function DiagramSVG({ arch, selectedNode, onSelectNode }) {
+const MIN_ZOOM = 0.5;
+const MAX_ZOOM = 2.5;
+const ZOOM_STEP = 0.25;
+
+function DiagramSVG({ arch, selectedNode, onSelectNode, zoom }) {
     const color = COLOR_TOKENS[arch.color];
     // Build a map for quick lookup
     const nodeMap = Object.fromEntries(arch.nodes.map((n) => [n.id, n]));
@@ -171,10 +175,10 @@ function DiagramSVG({ arch, selectedNode, onSelectNode }) {
     return (
         <svg
             viewBox="0 0 760 500"
-            className="w-full h-auto"
+            className="h-auto transition-[width] duration-200 mx-auto block"
             role="img"
             aria-label={`${arch.title} diagram — click a node to learn more`}
-            style={{ maxHeight: '340px' }}
+            style={{ width: `${zoom * 100}%`, maxWidth: zoom <= 1 ? '100%' : 'none', maxHeight: zoom === 1 ? '340px' : 'none' }}
         >
             {/* Edges */}
             <g aria-hidden="true">
@@ -258,6 +262,11 @@ export function ArchitectureSection() {
     const shouldReduceMotion = useReducedMotion();
     const [activeId, setActiveId] = useState('rag');
     const [selectedNode, setSelectedNode] = useState(null);
+    const [zoom, setZoom] = useState(1);
+
+    const zoomIn = () => setZoom((z) => Math.min(MAX_ZOOM, +(z + ZOOM_STEP).toFixed(2)));
+    const zoomOut = () => setZoom((z) => Math.max(MIN_ZOOM, +(z - ZOOM_STEP).toFixed(2)));
+    const zoomReset = () => setZoom(1);
 
     const active = ARCHITECTURES.find((a) => a.id === activeId) ?? ARCHITECTURES[0];
     const color = COLOR_TOKENS[active.color];
@@ -265,6 +274,7 @@ export function ArchitectureSection() {
     const handleTabChange = (id) => {
         setActiveId(id);
         setSelectedNode(null);
+        setZoom(1);
     };
 
     return (
@@ -349,13 +359,47 @@ export function ArchitectureSection() {
                     <div className="grid grid-cols-1 lg:grid-cols-3 gap-0">
                         {/* SVG diagram */}
                         <div className="lg:col-span-2 p-6 border-b lg:border-b-0 lg:border-r border-neutral-800">
-                            <DiagramSVG
-                                arch={active}
-                                selectedNode={selectedNode}
-                                onSelectNode={setSelectedNode}
-                            />
+                            <div className="flex items-center justify-end gap-2 mb-3" role="group" aria-label="Diagram zoom controls">
+                                <span className="text-xs text-neutral-500 mr-1 tabular-nums" aria-live="polite">
+                                    {Math.round(zoom * 100)}%
+                                </span>
+                                <button
+                                    type="button"
+                                    onClick={zoomOut}
+                                    disabled={zoom <= MIN_ZOOM}
+                                    aria-label="Zoom out diagram"
+                                    className="p-2 rounded-lg border border-neutral-700 bg-neutral-900 text-neutral-300 hover:border-neutral-500 hover:text-white disabled:opacity-40 disabled:cursor-not-allowed transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                                >
+                                    <ZoomOut size={16} aria-hidden="true" />
+                                </button>
+                                <button
+                                    type="button"
+                                    onClick={zoomIn}
+                                    disabled={zoom >= MAX_ZOOM}
+                                    aria-label="Zoom in diagram"
+                                    className="p-2 rounded-lg border border-neutral-700 bg-neutral-900 text-neutral-300 hover:border-neutral-500 hover:text-white disabled:opacity-40 disabled:cursor-not-allowed transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                                >
+                                    <ZoomIn size={16} aria-hidden="true" />
+                                </button>
+                                <button
+                                    type="button"
+                                    onClick={zoomReset}
+                                    disabled={zoom === 1}
+                                    aria-label="Reset diagram zoom"
+                                    className="p-2 rounded-lg border border-neutral-700 bg-neutral-900 text-neutral-300 hover:border-neutral-500 hover:text-white disabled:opacity-40 disabled:cursor-not-allowed transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                                >
+                                    <RotateCcw size={16} aria-hidden="true" />
+                                </button>
+                            </div>
+                            <div className="overflow-auto max-h-[380px] rounded-lg" tabIndex={0} aria-label="Scrollable diagram area">
+                                <DiagramSVG
+                                    arch={active}
+                                    selectedNode={selectedNode}
+                                    onSelectNode={setSelectedNode}
+                                    zoom={zoom}
+                                />
+                            </div>
                         </div>
-
                         {/* Node detail panel */}
                         <div className="p-6 flex flex-col justify-center min-h-[200px]">
                             {selectedNode ? (
