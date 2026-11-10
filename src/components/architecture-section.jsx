@@ -91,7 +91,7 @@ const ARCHITECTURES = [
             { id: 'gateway', label: 'API Gateway', sublabel: 'Auth / Rate Limit', x: 240, y: 160, w: 115, h: 48, detail: 'An API gateway validates JWT tokens, enforces rate limits (e.g. per-IP throttling), and routes requests to the appropriate backend service.' },
             { id: 'fastapi', label: 'FastAPI',    sublabel: 'Python Backend',   x: 410, y: 100, w: 110, h: 48, detail: 'The FastAPI service handles AI/ML workloads — RAG pipelines, OpenAI calls, and data processing — using async endpoints and Pydantic models for validation.' },
             { id: 'node',    label: 'Node.js',    sublabel: 'REST API',         x: 410, y: 220, w: 110, h: 48, detail: 'The Node.js service manages real-time financial data feeds, WebSocket connections, and lighter CRUD operations with sub-millisecond response times.' },
-            { id: 'db',      label: 'Database',   sublabel: 'PostgreSQL / MSSQL', x: 590, y: 160, w: 120, h: 48, detail: 'Persistent data is stored in PostgreSQL or MS SQL. Queries use parameterised statements; connection pooling (PgBouncer) keeps latency minimal.' },
+            { id: 'db',      label: 'Database',   sublabel: 'PostgreSQL / MSSQL / MongoDB', x: 590, y: 160, w: 120, h: 48, detail: 'Persistent data is stored in PostgreSQL, MS SQL, or MongoDB for flexible document-based data. Queries use parameterised statements; connection pooling (PgBouncer) keeps latency minimal.' },
             { id: 'resp',    label: 'Response',   sublabel: 'JSON / Stream',    x: 60,  y: 300, w: 110, h: 48, detail: 'The response is returned as JSON or as a server-sent event stream for real-time updates, then displayed via React state.' },
         ],
         edges: [

@@ -107,11 +107,12 @@ const SKILL_CATEGORIES = [
         label: 'Database',
         icon: GitBranch,
         color: 'amber',
-        description: 'Relational & managed cloud database systems',
+        description: 'Relational, NoSQL & managed cloud database systems',
         skills: [
             { name: 'PostgreSQL', level: 'Advanced' },
             { name: 'MS SQL',     level: 'Advanced' },
             { name: 'Supabase',   level: 'Advanced' },
+            { name: 'MongoDB',    level: 'Advanced' },
         ],
     },
     {
