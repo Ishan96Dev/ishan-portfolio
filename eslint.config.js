@@ -26,7 +26,7 @@ export default defineConfig([
       // which ESLint's static analysis does not recognise as a "use").
       'no-unused-vars': ['error', {
         varsIgnorePattern: '^[A-Z_]|^motion$|^err$',
-        argsIgnorePattern: '^_',
+        argsIgnorePattern: '^[A-Z_]',
       }],
     },
   },

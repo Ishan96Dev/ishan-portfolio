@@ -3,7 +3,6 @@
 import { useEffect, useState, useCallback } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
 import { Github, Star, GitFork, Code2, BookOpen } from 'lucide-react';
-import { resumeData } from '@/data/resume';
 
 const GITHUB_USERNAME = 'Ishan96Dev';
 
@@ -125,7 +124,7 @@ export function GitHubActivitySection() {
             // Show 6 most recently pushed repos
             setRepos(reposData.slice(0, 6));
             setLangStats(sortedLangs);
-        } catch (err) {
+        } catch {
             setError('Could not load GitHub data. Please check back later.');
         } finally {
             setLoading(false);

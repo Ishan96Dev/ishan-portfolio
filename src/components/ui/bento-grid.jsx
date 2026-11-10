@@ -20,7 +20,6 @@ export const BentoGridItem = ({
     title,
     description,
     header,
-    icon,
     image,
     link,
 }) => {
