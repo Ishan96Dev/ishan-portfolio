@@ -49,8 +49,8 @@ const securityHeaders = [
             "img-src 'self' data: blob:",
             // Fonts: self + Google Fonts CDN
             "font-src 'self' https://fonts.gstatic.com",
-            // Connections: self + Vercel analytics endpoints
-            "connect-src 'self' https://vitals.vercel-insights.com https://va.vercel-scripts.com",
+            // Connections: self + GitHub API (activity section) + Vercel analytics endpoints
+            "connect-src 'self' https://api.github.com https://vitals.vercel-insights.com https://va.vercel-scripts.com",
             // Workers, objects: none
             "worker-src 'none'",
             "object-src 'none'",
