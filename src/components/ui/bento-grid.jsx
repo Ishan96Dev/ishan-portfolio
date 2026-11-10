@@ -6,7 +6,7 @@ export const BentoGrid = ({ className, children }) => {
     return (
         <div
             className={cn(
-                "grid md:auto-rows-[18rem] grid-cols-1 md:grid-cols-3 gap-4 max-w-7xl mx-auto ",
+                "grid md:auto-rows-[18rem] grid-cols-1 md:grid-cols-3 gap-4 max-w-7xl mx-auto",
                 className
             )}
         >
@@ -33,9 +33,14 @@ export const BentoGridItem = ({
         >
             <div className="flex flex-1 w-full h-full min-h-[6rem] rounded-xl bg-gradient-to-br from-neutral-200 dark:from-neutral-900 dark:to-neutral-800 to-neutral-100 overflow-hidden relative">
                 {image ? (
+                    /*
+                     * WCAG 1.1.1 — image is decorative in context because the project title is
+                     * displayed as adjacent text below. Using alt="" prevents screen readers from
+                     * announcing the title twice.
+                     */
                     <Image
                         src={image}
-                        alt={title || ''}
+                        alt=""
                         fill
                         loading="lazy"
                         quality={75}
@@ -46,9 +51,20 @@ export const BentoGridItem = ({
                     <div className="w-full h-full object-cover">{header}</div>
                 ) : null}
 
-                <div className="absolute inset-0 bg-black/60 opacity-0 group-hover/bento:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                    <a href={link} target="_blank" rel="noreferrer" className="px-4 py-2 bg-primary text-primary-foreground rounded-full text-sm font-medium flex items-center gap-2 transform translate-y-4 group-hover/bento:translate-y-0 transition-transform duration-300">
-                        View Project <ArrowUpRight className="w-4 h-4" />
+                {/*
+                 * WCAG 2.1.1, 2.4.4 — overlay is visible on hover AND on focus-within so keyboard
+                 * users can see and reach the link. The link carries a descriptive aria-label.
+                 */}
+                <div className="absolute inset-0 bg-black/60 opacity-0 group-hover/bento:opacity-100 group-focus-within/bento:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                    <a
+                        href={link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        // WCAG 2.4.4 — descriptive accessible name identifies which project
+                        aria-label={`View ${title} project (opens in new tab)`}
+                        className="px-4 py-2 bg-primary text-primary-foreground rounded-full text-sm font-medium flex items-center gap-2 transform translate-y-4 group-hover/bento:translate-y-0 group-focus-within/bento:translate-y-0 transition-transform duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+                    >
+                        View Project <ArrowUpRight className="w-4 h-4" aria-hidden="true" />
                     </a>
                 </div>
             </div>

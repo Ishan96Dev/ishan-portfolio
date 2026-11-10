@@ -4,6 +4,7 @@ import { useEffect, useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 
+// WCAG 1.1.1 — purely decorative sparkle; aria-hidden hides it from screen readers entirely
 const Sparkle = ({ size, color, style }) => {
     return (
         <motion.span
@@ -13,6 +14,7 @@ const Sparkle = ({ size, color, style }) => {
             transition={{ duration: 0.4 }}
             style={style}
             className="absolute block pointer-events-none z-10"
+            aria-hidden="true"
         >
             <svg
                 width={size}
@@ -20,6 +22,9 @@ const Sparkle = ({ size, color, style }) => {
                 viewBox="0 0 160 160"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
+                // WCAG 1.1.1 — decorative SVG, hidden from AT
+                aria-hidden="true"
+                focusable="false"
             >
                 <path
                     d="M80 0C80 0 84.2846 41.2925 101.914 58.9211C119.543 76.5497 160 80 160 80C160 80 119.543 83.4503 101.914 101.079C84.2846 118.708 80 160 80 160C80 160 75.7154 118.708 58.0865 101.079C40.4575 83.4503 0 80 0 80C0 80 40.4575 76.5497 58.0865 58.9211C75.7154 41.2925 80 0 80 0Z"
@@ -37,6 +42,15 @@ export const SparklesText = ({ text, colors = { first: "#A07CFE", second: "#FE8F
     const containerRef = useRef(null);
 
     useEffect(() => {
+        // WCAG 2.3.3 — skip all animation if user prefers reduced motion
+        const prefersReduced =
+            typeof window !== 'undefined' &&
+            window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        if (prefersReduced) {
+            return; // No sparkles; text renders statically
+        }
+
         const generateSparkles = () => {
             const newSparkles = Array.from({ length: sparklesCount }).map(() => ({
                 id: `${Date.now()}-${Math.random()}`,
@@ -54,7 +68,6 @@ export const SparklesText = ({ text, colors = { first: "#A07CFE", second: "#FE8F
         const startInterval = () => {
             if (intervalRef.current || !isVisibleRef.current) return;
             generateSparkles();
-            // Slower interval to reduce repaints: 3s instead of 2s
             intervalRef.current = setInterval(generateSparkles, 3000);
         };
 
@@ -65,7 +78,6 @@ export const SparklesText = ({ text, colors = { first: "#A07CFE", second: "#FE8F
             }
         };
 
-        // Only animate when the element is in the viewport
         const observer = new IntersectionObserver(
             (entries) => {
                 entries.forEach((entry) => {
@@ -103,11 +115,14 @@ export const SparklesText = ({ text, colors = { first: "#A07CFE", second: "#FE8F
     return (
         <div ref={containerRef} className={cn("relative inline-block", className)}>
             <span className="relative z-0">{text}</span>
-            <AnimatePresence>
-                {sparkles.map((sparkle) => (
-                    <Sparkle key={sparkle.id} size={sparkle.size} color={sparkle.color} style={sparkle.style} />
-                ))}
-            </AnimatePresence>
+            {/* Sparkles are decorative — AnimatePresence wrapper is also aria-hidden */}
+            <span aria-hidden="true">
+                <AnimatePresence>
+                    {sparkles.map((sparkle) => (
+                        <Sparkle key={sparkle.id} size={sparkle.size} color={sparkle.color} style={sparkle.style} />
+                    ))}
+                </AnimatePresence>
+            </span>
         </div>
     );
 };

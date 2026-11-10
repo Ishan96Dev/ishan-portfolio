@@ -1,21 +1,24 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 import { resumeData } from '@/data/resume';
 
 export function AboutSection() {
+    // WCAG 2.3.3 — skip entrance animations when user prefers reduced motion
+    const shouldReduceMotion = useReducedMotion()
+
     return (
-        <section id="about" className="py-24 px-6 md:px-12 relative bg-background/50">
+        <section id="about" aria-labelledby="about-heading" className="py-24 px-6 md:px-12 relative bg-background/50">
             <div className="container mx-auto max-w-5xl">
                 <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
+                    initial={shouldReduceMotion ? undefined : { opacity: 0, y: 20 }}
+                    whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.6 }}
                     className="space-y-12"
                 >
                     <div className="space-y-4">
-                        <h2 className="text-3xl md:text-4xl font-bold tracking-tighter">About Me</h2>
+                        <h2 id="about-heading" className="text-3xl md:text-4xl font-bold tracking-tighter">About Me</h2>
                         <div className="h-1 w-20 bg-primary rounded-full"></div>
                         <p className="text-xl text-muted-foreground leading-relaxed max-w-3xl">
                             {resumeData.summary}
@@ -37,7 +40,9 @@ export function AboutSection() {
                                                 {skills.map((skill, index) => (
                                                     <span
                                                         key={index}
-                                                        className="px-3 py-1.5 text-sm bg-primary/10 border border-primary/20 text-primary rounded-md cursor-default hover:bg-primary/20 hover:scale-105 transition-all duration-200"
+                                                        // WCAG 3.2.4 — removed hover:scale-105 and cursor-default
+                                                        // to give a consistent non-interactive signal
+                                                        className="px-3 py-1.5 text-sm bg-primary/10 border border-primary/20 text-primary rounded-md"
                                                     >
                                                         {skill}
                                                     </span>
@@ -56,8 +61,8 @@ export function AboutSection() {
                                 {resumeData.education.map((edu, index) => (
                                     <motion.div
                                         key={index}
-                                        initial={{ opacity: 0, x: -20 }}
-                                        whileInView={{ opacity: 1, x: 0 }}
+                                        initial={shouldReduceMotion ? undefined : { opacity: 0, x: -20 }}
+                                        whileInView={shouldReduceMotion ? undefined : { opacity: 1, x: 0 }}
                                         viewport={{ once: true }}
                                         transition={{ delay: index * 0.1 }}
                                         className="space-y-1 border-l-2 border-primary/30 pl-4 hover:border-primary transition-colors"
@@ -75,8 +80,8 @@ export function AboutSection() {
                                     {resumeData.certifications.map((cert, index) => (
                                         <motion.li
                                             key={index}
-                                            initial={{ opacity: 0, x: -20 }}
-                                            whileInView={{ opacity: 1, x: 0 }}
+                                            initial={shouldReduceMotion ? undefined : { opacity: 0, x: -20 }}
+                                            whileInView={shouldReduceMotion ? undefined : { opacity: 1, x: 0 }}
                                             viewport={{ once: true }}
                                             transition={{ delay: 0.2 + (index * 0.1) }}
                                             className="flex items-center gap-2 text-sm text-muted-foreground"

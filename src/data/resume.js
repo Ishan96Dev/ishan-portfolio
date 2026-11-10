@@ -19,6 +19,7 @@ export const resumeData = {
     title: "QA Engineer & AI/ML Developer | Python Backend Developer",
     subtitle: "AI/ML Testing Specialist | RAG & Agentic AI Enthusiast | Full Stack Developer",
     email: "ishanchakraborty2496@gmail.com",
+    emailAlt: "ishanrock1234@gmail.com",
     phone: "+91 7021133070",
     location: "Kolkata, West Bengal",
     social: [
