@@ -44,9 +44,8 @@ jobs:
         run: npm ci
 
       - name: Run ESLint
-        # Call next lint directly with explicit directories to avoid the CI
-        # runner misinterpreting "lint" as a directory argument.
-        run: npx next lint --dir app --dir src
+        # Invoke ESLint directly — this Next.js version does not ship a lint subcommand.
+        run: npx eslint app src --ext .js,.jsx
 
       - name: Build (Next.js production build)
         run: npm run build
