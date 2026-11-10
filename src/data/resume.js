@@ -21,7 +21,7 @@ export const resumeData = {
     email: "ishanchakraborty2496@gmail.com",
     emailAlt: "ishanrock1234@gmail.com",
     phone: "+91 7021133070",
-    location: "Kolkata, West Bengal",
+    location: "Mumbai, Maharashtra",
     social: [
         {
             name: "GitHub",

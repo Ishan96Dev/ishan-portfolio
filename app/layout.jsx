@@ -9,7 +9,7 @@ export const metadata = {
         template: '%s | Ishan Chakraborty',
     },
     description:
-        'Portfolio of Ishan Chakraborty — QA Engineer, AI/ML Developer & Python Backend Developer, RAG & Agentic AI Enthusiast, and Full Stack Developer based in Kolkata, India. Experienced in AI/ML development, automation testing, RAG systems, and building robust digital products.',
+        'Portfolio of Ishan Chakraborty — QA Engineer, AI/ML Developer & Python Backend Developer, RAG & Agentic AI Enthusiast, and Full Stack Developer based in Mumbai, India. Experienced in AI/ML development, automation testing, RAG systems, and building robust digital products.',
     keywords: [
         'Ishan Chakraborty',
         'QA Engineer',
@@ -22,7 +22,7 @@ export const metadata = {
         'Agentic AI',
         'Full Stack Developer',
         'Automation Testing',
-        'Kolkata',
+        'Mumbai',
         'Portfolio',
         'Software Engineer',
         'Selenium',
@@ -95,8 +95,8 @@ export default function RootLayout({ children }) {
                                 'QA Engineer, AI/ML Developer & Python Backend Developer, RAG & Agentic AI Enthusiast, Full Stack Developer',
                             address: {
                                 '@type': 'PostalAddress',
-                                addressLocality: 'Kolkata',
-                                addressRegion: 'West Bengal',
+                                addressLocality: 'Mumbai',
+                                addressRegion: 'Maharashtra',
                                 addressCountry: 'IN',
                             },
                             sameAs: [
