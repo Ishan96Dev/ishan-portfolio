@@ -41,6 +41,14 @@ export const resumeData = {
     summary: "Results-driven QA Engineer, AI/ML Developer & Python Backend Developer with 4+ years of experience. Specialized in building and testing AI/ML systems — from developing RAG pipelines, Agentic AI workflows, and NLP applications to validating LLM models and Generative AI platforms. Hands-on expertise across all major AI providers: OpenAI (GPT, DALL-E, Whisper, TTS), Google Gemini (Pro, Flash, Embedding), and Anthropic Claude. Skilled in embedding models, RAG architectures, Text-to-Speech, Speech-to-Text, and image generation models. Proficient in Python backend development (FastAPI, Flask), frontend technologies (React.js, Next.js), and CI/CD pipelines.",
     experience: [
         {
+            company: "Metropolitan Stock Exchange of India (MSE)",
+            logo: mseiLogo,
+            role: "Sr. Executive (Technology)",
+            period: "June 2026 – Present",
+            description: "Serving as a full-stack developer building and maintaining exchange technology platforms. Developing backend services and RESTful APIs using Node.js and Python, and building both responsive frontend interfaces and robust backend systems with Next.js. Maintaining the official MSE website and contributing to internal MSE development app projects. Managing source code workflows via GitHub and GitLab, administering Linux servers, and handling MS SQL database operations to support trading and market data systems.",
+            tags: ["Node.js", "Next.js", "Python", "GitHub", "GitLab", "Linux", "MS SQL", "Backend", "Frontend"]
+        },
+        {
             company: "Metropolitan Stock Exchange of India (MSEI)",
             logo: mseiLogo,
             role: "Freelance Python Backend Developer",
