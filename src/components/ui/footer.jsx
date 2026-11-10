@@ -21,9 +21,14 @@ export function Footer() {
                     <nav aria-label="Footer navigation">
                         <h2 className="font-semibold text-foreground mb-4">Navigation</h2>
                         <ul className="space-y-2 text-sm text-muted-foreground">
-                            <li><a href="#hero" className="hover:text-primary transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary rounded">Home</a></li>
-                            <li><a href="#about" className="hover:text-primary transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary rounded">About</a></li>
-                            <li><a href="#projects" className="hover:text-primary transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary rounded">Projects</a></li>
+                            <li><a href="#hero"         className="hover:text-primary transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary rounded">Home</a></li>
+                            <li><a href="#about"        className="hover:text-primary transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary rounded">About</a></li>
+                            <li><a href="#skills"       className="hover:text-primary transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary rounded">Skills</a></li>
+                            <li><a href="#experience"   className="hover:text-primary transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary rounded">Experience</a></li>
+                            <li><a href="#projects"     className="hover:text-primary transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary rounded">Projects</a></li>
+                            <li><a href="#github"       className="hover:text-primary transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary rounded">GitHub</a></li>
+                            <li><a href="#architecture" className="hover:text-primary transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary rounded">Architecture</a></li>
+                            <li><a href="#contact"      className="hover:text-primary transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary rounded">Contact</a></li>
                         </ul>
                     </nav>
 

@@ -20,10 +20,12 @@ export function TubelightNavbar() {
     }, [])
 
     const navItems = [
-        { name: 'Home', url: '#hero', icon: Home },
-        { name: 'About', url: '#about', icon: User },
-        { name: 'Projects', url: '#projects', icon: Briefcase },
-        { name: 'Contact', url: '#contact', icon: Mail },
+        { name: 'Home',       url: '#hero',         icon: Home      },
+        { name: 'About',      url: '#about',         icon: User      },
+        { name: 'Skills',     url: '#skills',        icon: Link      },
+        { name: 'Experience', url: '#experience',    icon: Briefcase },
+        { name: 'Projects',   url: '#projects',      icon: Link      },
+        { name: 'Contact',    url: '#contact',       icon: Mail      },
     ]
 
     return (
